@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './css/QuoteContainer.css'
 
 // import Axios library
@@ -7,7 +7,15 @@ import axios from "axios";
 
 const QuoteContainer = (props) => {
 
-  const [quote, setQuote] = useState('')
+  const [quotes, setQuotes] = useState([])
+
+
+  useEffect(() => {
+
+    getQuote()
+  }, []);
+
+
 
 
   const getQuote = () => {
@@ -15,26 +23,17 @@ const QuoteContainer = (props) => {
     axios.get('https://gist.githubusercontent.com/natebass/b0a548425a73bdf8ea5c618149fe1fce/raw/f4231cd5961f026264bb6bb3a6c41671b044f1f4/quotes.json', {
       mode: 'corse'
     })
-    .then(res => {
-      // console.log(res);
-      // console.log(res.data);
-      // console.log(res.data[0]);
+      .then(res => {
+       
+        const arrQuotes = res.data;
+        console.log(arrQuotes);
 
-      const arrQuotes = res.data;
-      // console.log(arrQuotes);
-
-      let randomQuote = arrQuotes[Math.floor(Math.random() * arrQuotes.length)];
-      console.log(randomQuote);
-
-    })
     
+        setQuotes(arrQuotes)
+
+      })
+
   }
-
-  getQuote();
-
-
-
-
 
 
 
