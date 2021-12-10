@@ -8,11 +8,19 @@ import axios from "axios";
 const QuoteContainer = (props) => {
 
   const [quotes, setQuotes] = useState([])
+  const [randomQuote, setRandomQuote] = useState([])
+  const [currentQuote, setCurrentQuote] = useState(0)
 
 
   useEffect(() => {
 
     getQuote()
+
+    let firstRandomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    console.log(firstRandomQuote);
+
+    setRandomQuote([firstRandomQuote])
+    console.log(randomQuote);
   }, []);
 
 
@@ -26,14 +34,22 @@ const QuoteContainer = (props) => {
       .then(res => {
        
         const arrQuotes = res.data;
-        console.log(arrQuotes);
+        // console.log(arrQuotes);
 
-    
         setQuotes(arrQuotes)
-
       })
-
   }
+
+
+  // let randomQuoteJSX = randomQuote.map(ele => {
+  //   return (
+  //   <span id="span-random-quote">{ele.quote}</span>
+  //   )
+  // })
+
+  // let randomQuoteAuthorJSX = randomQuote.map(ele => {
+  //   return <span id="span-random-quote">{ele.author}</span>
+  // })
 
 
 
@@ -41,7 +57,8 @@ const QuoteContainer = (props) => {
   return (
     <section className="quote-main-container">
       <div className="random-quote-containter">
-        <span id="span-random-quote"></span>
+        {/* {randomQuoteJSX}
+        {randomQuoteAuthorJSX} */}
       </div>
       <div className="btn-container">
         <button className="btn-next-quote">
