@@ -41,24 +41,24 @@ const QuoteContainer = (props) => {
   }
 
 
-  // let randomQuoteJSX = randomQuote.map(ele => {
-  //   return (
-  //   <span id="span-random-quote">{ele.quote}</span>
-  //   )
-  // })
+  const randomQuoteJSX = randomQuote.map(ele => {
+    return (
+    <span id="span-random-quote">{ele.quote}</span>
+    )
+  })
 
-  // let randomQuoteAuthorJSX = randomQuote.map(ele => {
-  //   return <span id="span-random-quote">{ele.author}</span>
-  // })
+  const randomQuoteAuthorJSX = randomQuote.map(ele => {
+    return <span id="span-random-quote">{ele.author}</span>
+  })
 
 
 
 
   return (
-    <section className="quote-main-container">
+    <section className="quote-main-container river">
       <div className="random-quote-containter">
-        {/* {randomQuoteJSX}
-        {randomQuoteAuthorJSX} */}
+        {randomQuoteJSX}
+        {randomQuoteAuthorJSX}
       </div>
       <div className="btn-container">
         <button className="btn-next-quote">
