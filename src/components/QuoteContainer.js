@@ -10,11 +10,6 @@ const QuoteContainer = (props) => {
   const [quote, setQuote] = useState('')
 
 
-
-  const generateRandomQuote = (array) => {
-    return Math.floor(Math.random() * (array.lenght - 0)) + 0
-  }
-
   const getQuote = () => {
 
     axios.get('https://gist.githubusercontent.com/natebass/b0a548425a73bdf8ea5c618149fe1fce/raw/f4231cd5961f026264bb6bb3a6c41671b044f1f4/quotes.json', {
@@ -23,22 +18,13 @@ const QuoteContainer = (props) => {
     .then(res => {
       // console.log(res);
       // console.log(res.data);
-      console.log(res.data[0]);
+      // console.log(res.data[0]);
 
-      
-
-
-
-
-
-
-
-      // const arrQuotes = res.data;
+      const arrQuotes = res.data;
       // console.log(arrQuotes);
 
-      // let newRandomQuote = generateRandomQuote(arrQuotes);
-      // console.log(newRandomQuote);
-
+      let randomQuote = arrQuotes[Math.floor(Math.random() * arrQuotes.length)];
+      console.log(randomQuote);
 
     })
     
