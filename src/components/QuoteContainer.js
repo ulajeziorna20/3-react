@@ -30,7 +30,6 @@ const QuoteContainer = (props) => {
 
         setRandomQuotes((prevRandomQuotes) => {
 
-          console.log(prevRandomQuotes);
           return prevRandomQuotes.concat(arrQuotes[firstRandomIndex])
         })
         setQuotes(arrQuotes)
@@ -39,15 +38,17 @@ const QuoteContainer = (props) => {
 
 
 
-  // const nextQuote = () => {
+  const nextQuote = () => {
 
-  //   setCurrentQuote(randomQuote)
+    let randomIndex = Math.floor(Math.random() * quotes.length);
 
-  //   let nextRandomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    setRandomQuotes((prevRandomQuotes) => {
 
-  //   setRandomQuote(nextRandomQuote)
-
-  // }
+      // console.log(prevRandomQuotes);
+      return prevRandomQuotes.concat(quotes[randomIndex])
+    })
+    setCurrentQuoteIndex(currentQuoteIndex + 1)
+  }
 
 
 
@@ -63,13 +64,13 @@ const QuoteContainer = (props) => {
       </div>
     )
   }
-  console.log(randomQuote)
+  // console.log(randomQuote)
 
   return (
     <section className='quote-main-container river'>
       {quote}
       <div className='btn-container'>
-        <button className='btn-next-quote'>Next quote!</button>
+        <button className='btn-next-quote' onClick={nextQuote}>Next quote!</button>
         <button className='btn-container'>Previous quote</button>
       </div>
     </section>
