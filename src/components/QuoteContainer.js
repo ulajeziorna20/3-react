@@ -8,32 +8,21 @@ import axios from "axios";
 const QuoteContainer = (props) => {
 
   const [quotes, setQuotes] = useState([])
-  const [randomQuote, setRandomQuote] = useState([])
-  const [currentQuote, setCurrentQuote] = useState(0)
+  const [randomQuotes, setRandomQuotes] = useState([])
+  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0)
 
 
 
   useEffect(() => {
 
-    getQuote()
-    console.log(quotes);
-    console.log(quotes[0]);
-
-    let lenghtQuotes = quotes.length
-    console.log(lenghtQuotes);
-
-    let firstRandomIndex = Math.floor(Math.random() * lenghtQuotes);
-    console.log(firstRandomIndex);
-
-    setRandomQuote(quotes[firstRandomIndex])
-
+    getQuotes()
   }, []);
 
 
   // console.log(randomQuote);
 
 
-  const getQuote = () => {
+  const getQuotes = () => {
 
     axios.get('https://gist.githubusercontent.com/natebass/b0a548425a73bdf8ea5c618149fe1fce/raw/f4231cd5961f026264bb6bb3a6c41671b044f1f4/quotes.json', {
       mode: 'corse'
@@ -41,19 +30,20 @@ const QuoteContainer = (props) => {
       .then(res => {
 
         const arrQuotes = res.data;
-        // console.log(arrQuotes);
-        let newArrQuotes = [];
-        
-        for (const [index, quoteObj] of Object.entries(arrQuotes)) {
 
-          let newObj = {
-            key: (Date.now() + index),
-            quote: quoteObj.quote,
-            author: quoteObj.author
-          }
-          newArrQuotes.push(newObj) 
-        }
-        setQuotes(newArrQuotes)
+        let firstRandomIndex = Math.floor(Math.random() * arrQuotes.length);
+        // console.log(firstRandomIndex);
+
+        setRandomQuotes((prevRandomQuotes) => {
+
+          console.log(prevRandomQuotes);
+          return prevRandomQuotes.concat(arrQuotes[firstRandomIndex])
+        })
+
+      
+        // console.log(arrQuotes);
+     
+        setQuotes(arrQuotes)
       })
   }
 
@@ -69,20 +59,22 @@ const QuoteContainer = (props) => {
 
   // }
 
-    // const randomQuoteJSX = randomQuote.map((ele, i) => {
-    //   return (
-    //   <span id="span-random-quote" key={Date.now + i}>{ele.quote}<span>{ele.author}</span></span>
-    //   )
-    // })
-  
-  
+  // let randomQuotesJSX = randomQuote.map((ele) => {
+  //   return (
+  //   <span id="span-random-quote" key={ele.key}>{ele.quote}<span>{ele.author}</span></span>
+  //   )
+  // })
 
+
+  const randomQuote = randomQuotes[currentQuoteIndex]
+console.log(randomQuote);
 
 
   return (
     <section className="quote-main-container river">
       <div className="random-quote-containter">
-        {/* {randomQuoteJSX} */}
+        {/* <span id="span-random-quote">{randomQuote.quote}</span> */}
+        {/* <span id="span-random-quote">{randomQuote.quote}</span> */}
       </div>
       <div className="btn-container">
         <button className="btn-next-quote">
