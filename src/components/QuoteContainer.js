@@ -13,13 +13,13 @@ const QuoteContainer = (props) => {
   const [disabled, setDisabled] = useState(true)
 
 
-
   useEffect(() => {
 
     getQuotes()
   }, []);
 
 
+  // axios 
   const getQuotes = () => {
 
     axios.get('https://gist.githubusercontent.com/natebass/b0a548425a73bdf8ea5c618149fe1fce/raw/f4231cd5961f026264bb6bb3a6c41671b044f1f4/quotes.json', {
@@ -39,21 +39,17 @@ const QuoteContainer = (props) => {
   }
 
 
-
   // Przycisk następny cytat
   const nextQuote = () => {
 
     let randomIndex = Math.floor(Math.random() * quotes.length);
-
     setRandomQuotes((prevRandomQuotes) => {
 
-      // console.log(prevRandomQuotes);
       return prevRandomQuotes.concat(quotes[randomIndex])
     })
     setCurrentQuoteIndex(currentQuoteIndex + 1)
     setDisabled(false)
   }
-
 
 
   // Przycisk poprzedni cytat
@@ -65,9 +61,7 @@ const QuoteContainer = (props) => {
     } else if (currentQuoteIndex > 1) {
       setCurrentQuoteIndex(currentQuoteIndex - 1)
     }
-    
   }
-
 
 
   // Wyświetlanie cytatu na stronie 
@@ -76,19 +70,19 @@ const QuoteContainer = (props) => {
   let quote = 'no quote'
   if (randomQuote) {
     quote = (
-      <div className='random-quote-containter'>
-        <span id='span-random-quote'>{randomQuote.quote}</span>
-        <span id='span-random-quote'>{randomQuote.author}</span>
+      <div className='quote-containter'>
+        <blockquote id='spn-quote'>{randomQuote.quote}</blockquote>
+        <span id='spn-quote'>{randomQuote.author}</span>
       </div>
     )
   }
-  // console.log(randomQuote)
+
 
   return (
-    <section className='quote-main-container river'>
+    <section className='quote-section'>
       {quote}
       <div className='btn-container'>
-        <button className='btn-container' disabled={disabled} onClick={prevQuote}>Previous quote</button>
+        <button className='btn-prev-quote' disabled={disabled} onClick={prevQuote}>Previous quote</button>
         <button className='btn-next-quote' onClick={nextQuote}>Next quote!</button>
       </div>
     </section>
