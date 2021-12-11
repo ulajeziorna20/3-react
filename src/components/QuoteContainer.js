@@ -16,6 +16,7 @@ const QuoteContainer = (props) => {
   useEffect(() => {
 
     getQuote()
+    // console.log(quotes);
 
     let firstRandomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     console.log(firstRandomQuote);
@@ -25,7 +26,7 @@ const QuoteContainer = (props) => {
   }, []);
 
 
-  console.log(randomQuote);
+  // console.log(randomQuote);
 
 
   const getQuote = () => {
@@ -54,25 +55,20 @@ const QuoteContainer = (props) => {
 
   // }
 
-
-  // const randomQuoteJSX = randomQuote.map(ele => {
-  //   return (
-  //   <span id="span-random-quote">{ele.quote}</span>
-  //   )
-  // })
-
-  // const randomQuoteAuthorJSX = randomQuote.map(ele => {
-  //   return <span id="span-random-quote">{ele.author}</span>
-  // })
-
+    const randomQuoteJSX = randomQuote.map((ele, i) => {
+      return (
+      <span id="span-random-quote" key={Date.now + i}>{ele.quote}<span>{ele.author}</span></span>
+      )
+    })
+  
+  
 
 
 
   return (
     <section className="quote-main-container river">
       <div className="random-quote-containter">
-        {/* {randomQuoteJSX}
-        {randomQuoteAuthorJSX} */}
+        {randomQuoteJSX}
       </div>
       <div className="btn-container">
         <button className="btn-next-quote">
