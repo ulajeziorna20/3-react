@@ -10,6 +10,8 @@ const QuoteContainer = (props) => {
   const [quotes, setQuotes] = useState([])
   const [randomQuotes, setRandomQuotes] = useState([])
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0)
+  const [disabled, setDisabled] = useState(true)
+
 
 
   useEffect(() => {
@@ -38,6 +40,7 @@ const QuoteContainer = (props) => {
 
 
 
+  // Przycisk następny cytat
   const nextQuote = () => {
 
     let randomIndex = Math.floor(Math.random() * quotes.length);
@@ -48,6 +51,21 @@ const QuoteContainer = (props) => {
       return prevRandomQuotes.concat(quotes[randomIndex])
     })
     setCurrentQuoteIndex(currentQuoteIndex + 1)
+    setDisabled(false)
+  }
+
+
+
+  // Przycisk poprzedni cytat
+  const prevQuote = () => {
+
+    if (currentQuoteIndex === 1) {
+      setCurrentQuoteIndex(currentQuoteIndex - 1)
+      setDisabled(true)
+    } else if (currentQuoteIndex > 1) {
+      setCurrentQuoteIndex(currentQuoteIndex - 1)
+    }
+    
   }
 
 
@@ -70,8 +88,8 @@ const QuoteContainer = (props) => {
     <section className='quote-main-container river'>
       {quote}
       <div className='btn-container'>
+        <button className='btn-container' disabled={disabled} onClick={prevQuote}>Previous quote</button>
         <button className='btn-next-quote' onClick={nextQuote}>Next quote!</button>
-        <button className='btn-container'>Previous quote</button>
       </div>
     </section>
   )
