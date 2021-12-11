@@ -1,0 +1,61 @@
+.header-title {
+  margin-bottom: 80px;
+}
+
+hr {
+  height: 1px;
+  width: 300px;
+  border: 0;
+  border-top: 1px solid rgb(94, 143, 223);
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-weight: lighter;
+  font-style: italic;
+}
+
+#spn-quote {
+  text-shadow: 1.3px 2px #5e85ac;
+  font-style: italic;
+}
+
+#spn-author {
+  font-size: 15px;
+  font-style: italic;
+}
+
+.btn-container {
+  margin-top: 25px;
+}
+
+.blockquote-box {
+  height: 140px;
+}
+
+.btn-prev-quote {
+  background-color: rgb(177, 177, 177);
+  border-color: rgb(177, 177, 177);
+  margin-right: 5px;
+  width: 120px;
+  height: 30px;
+}
+
+.btn-prev-quote:hover {
+  background-color: rgb(145, 167, 173);
+  border: rgb(145, 167, 173);
+}
+
+.btn-next-quote {
+  background-color: rgba(30, 139, 202, 0.842);
+  border-color: rgba(30, 139, 202, 0.842);
+  font-weight: 700;
+  margin-right: 5px;
+  width: 120px;
+  height: 30px;
+}
+
+.btn-next-quote:hover {
+  background-color: rgba(155, 217, 253, 0.842);
+  border-color: rgba(155, 217, 253, 0.842);
+}

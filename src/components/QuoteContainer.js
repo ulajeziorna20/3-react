@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import './css/QuoteContainer.css'
 
 // import Axios library
-import axios from "axios";
+import axios from 'axios';
 
 
 const QuoteContainer = (props) => {
@@ -72,7 +72,7 @@ const QuoteContainer = (props) => {
     quote = (
       <div className='quote-containter'>
         <blockquote id='spn-quote'>{randomQuote.quote}</blockquote>
-        <span id='spn-quote'>{randomQuote.author}</span>
+        <span id='spn-author'>{randomQuote.author}</span>
       </div>
     )
   }
@@ -80,7 +80,13 @@ const QuoteContainer = (props) => {
 
   return (
     <section className='quote-section'>
-      {quote}
+      <header className='header-title'>
+        <h1>Choose your quote...</h1>
+        <hr />
+      </header>
+      <div className='blockquote-box'>
+        {quote}
+      </div>
       <div className='btn-container'>
         <button className='btn-prev-quote' disabled={disabled} onClick={prevQuote}>Previous quote</button>
         <button className='btn-next-quote' onClick={nextQuote}>Next quote!</button>
