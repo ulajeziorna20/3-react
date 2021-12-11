@@ -12,14 +12,10 @@ const QuoteContainer = (props) => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0)
 
 
-
   useEffect(() => {
 
     getQuotes()
   }, []);
-
-
-  // console.log(randomQuote);
 
 
   const getQuotes = () => {
@@ -28,21 +24,15 @@ const QuoteContainer = (props) => {
       mode: 'corse'
     })
       .then(res => {
-
         const arrQuotes = res.data;
 
         let firstRandomIndex = Math.floor(Math.random() * arrQuotes.length);
-        // console.log(firstRandomIndex);
 
         setRandomQuotes((prevRandomQuotes) => {
 
           console.log(prevRandomQuotes);
           return prevRandomQuotes.concat(arrQuotes[firstRandomIndex])
         })
-
-      
-        // console.log(arrQuotes);
-     
         setQuotes(arrQuotes)
       })
   }
@@ -59,30 +49,28 @@ const QuoteContainer = (props) => {
 
   // }
 
-  // let randomQuotesJSX = randomQuote.map((ele) => {
-  //   return (
-  //   <span id="span-random-quote" key={ele.key}>{ele.quote}<span>{ele.author}</span></span>
-  //   )
-  // })
 
 
+  // Wyświetlanie cytatu na stronie 
   const randomQuote = randomQuotes[currentQuoteIndex]
-console.log(randomQuote);
 
+  let quote = 'no quote'
+  if (randomQuote) {
+    quote = (
+      <div className='random-quote-containter'>
+        <span id='span-random-quote'>{randomQuote.quote}</span>
+        <span id='span-random-quote'>{randomQuote.author}</span>
+      </div>
+    )
+  }
+  console.log(randomQuote)
 
   return (
-    <section className="quote-main-container river">
-      <div className="random-quote-containter">
-        {/* <span id="span-random-quote">{randomQuote.quote}</span> */}
-        {/* <span id="span-random-quote">{randomQuote.quote}</span> */}
-      </div>
-      <div className="btn-container">
-        <button className="btn-next-quote">
-          Next quote!
-        </button>
-        <button className="btn-container">
-          Previous quote
-        </button>
+    <section className='quote-main-container river'>
+      {quote}
+      <div className='btn-container'>
+        <button className='btn-next-quote'>Next quote!</button>
+        <button className='btn-container'>Previous quote</button>
       </div>
     </section>
   )
