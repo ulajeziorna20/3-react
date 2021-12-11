@@ -17,11 +17,15 @@ const QuoteContainer = (props) => {
 
     getQuote()
     console.log(quotes);
+    console.log(quotes[0]);
 
-    // let firstRandomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    // console.log(firstRandomQuote);
+    let lenghtQuotes = quotes.length
+    console.log(lenghtQuotes);
 
-    // setRandomQuote([firstRandomQuote])
+    let firstRandomIndex = Math.floor(Math.random() * lenghtQuotes);
+    console.log(firstRandomIndex);
+
+    setRandomQuote(quotes[firstRandomIndex])
 
   }, []);
 
