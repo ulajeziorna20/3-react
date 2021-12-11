@@ -12,6 +12,7 @@ const QuoteContainer = (props) => {
   const [currentQuote, setCurrentQuote] = useState(0)
 
 
+
   useEffect(() => {
 
     getQuote()
@@ -20,10 +21,11 @@ const QuoteContainer = (props) => {
     console.log(firstRandomQuote);
 
     setRandomQuote([firstRandomQuote])
-    console.log(randomQuote);
+
   }, []);
 
 
+  console.log(randomQuote);
 
 
   const getQuote = () => {
@@ -32,7 +34,7 @@ const QuoteContainer = (props) => {
       mode: 'corse'
     })
       .then(res => {
-       
+
         const arrQuotes = res.data;
         // console.log(arrQuotes);
 
@@ -41,15 +43,27 @@ const QuoteContainer = (props) => {
   }
 
 
-  const randomQuoteJSX = randomQuote.map(ele => {
-    return (
-    <span id="span-random-quote">{ele.quote}</span>
-    )
-  })
 
-  const randomQuoteAuthorJSX = randomQuote.map(ele => {
-    return <span id="span-random-quote">{ele.author}</span>
-  })
+  // const nextQuote = () => {
+
+  //   setCurrentQuote(randomQuote)
+
+  //   let nextRandomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+  //   setRandomQuote(nextRandomQuote)
+
+  // }
+
+
+  // const randomQuoteJSX = randomQuote.map(ele => {
+  //   return (
+  //   <span id="span-random-quote">{ele.quote}</span>
+  //   )
+  // })
+
+  // const randomQuoteAuthorJSX = randomQuote.map(ele => {
+  //   return <span id="span-random-quote">{ele.author}</span>
+  // })
 
 
 
@@ -57,8 +71,8 @@ const QuoteContainer = (props) => {
   return (
     <section className="quote-main-container river">
       <div className="random-quote-containter">
-        {randomQuoteJSX}
-        {randomQuoteAuthorJSX}
+        {/* {randomQuoteJSX}
+        {randomQuoteAuthorJSX} */}
       </div>
       <div className="btn-container">
         <button className="btn-next-quote">
